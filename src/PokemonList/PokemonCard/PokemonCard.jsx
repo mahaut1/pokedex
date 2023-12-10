@@ -1,12 +1,20 @@
-import react from 'react'
+// PokemonCard.jsx
 
-function PokemonCard(){
+import React from 'react';
+
+const PokemonCard = ({ pokemon }) => {
+    const { id, name, image, height, weight } = pokemon;
+
     return (
-    <div>
-        <p class="pokemoncard">Pokemon card</p>
-    </div>
-    
-    )
-}
+        <div className="pokemon-card">
+          
+            <p>{id}</p>
+            <p>{name.fr}</p>
+            <img src={image} alt={name} />
+            <p>{height}m</p>
+            <p>{weight}kg</p>
+        </div>
+    );
+};
 
-export default PokemonCard
+export default PokemonCard;
