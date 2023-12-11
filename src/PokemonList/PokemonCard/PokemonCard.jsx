@@ -3,16 +3,16 @@
 import React from 'react';
 
 const PokemonCard = ({ pokemon }) => {
-    const { id, name, image, height, weight } = pokemon;
+    const { id, name, image,types } = pokemon;
 
     return (
         <div className="pokemon-card">
           
-            <p>{id}</p>
-            <p>{name.fr}</p>
+            <p>NO.{id}</p>
+            <p>{pokemon.names.en}</p>
             <img src={image} alt={name} />
-            <p>{height}m</p>
-            <p>{weight}kg</p>
+            <p>{types.join(', ')}</p>
+           
         </div>
     );
 };

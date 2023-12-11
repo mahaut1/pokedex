@@ -2,7 +2,21 @@ import React from 'react';
 import './PokemonList.css';
 import PokemonCard from './PokemonCard/PokemonCard';
 
-export const PokemonList = () => {
+const PokemonList = ({ filteredPokemons }) => {
+    console.log("filteredPokemons in PokemonList:", filteredPokemons);
+
+    return (
+        <div className='Pokemonitems'>
+            {filteredPokemons && filteredPokemons.map((pokemon, key) => (
+                <PokemonCard pokemon={pokemon} key={key} />
+            ))}
+        </div>
+    );
+};
+
+export default PokemonList;
+
+/* export const PokemonList = () => {
     const [rows, setRows] = React.useState([]);
     
     React.useEffect(() => {
@@ -21,7 +35,10 @@ export const PokemonList = () => {
         </>
     );
 };
-export default PokemonList; // Exporting PokemonList as default
+export default PokemonList; // Exporting PokemonList as default */
+
+// SearchBar.jsx
+
 
 
 

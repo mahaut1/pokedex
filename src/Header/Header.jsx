@@ -1,10 +1,16 @@
-import React from 'react'
-import './Header.css'
-import Logo from './Logo/Logo'
-import LanguageChoice from './LanguageChoice/LanguageChoice'
+import React from 'react';
+import './Header.css';
+import Logo from './Logo/Logo';
+import LanguageChoice from './LanguageChoice/LanguageChoice';
 
-function Header(){
-   return(<header><Logo></Logo>Mon header<LanguageChoice></LanguageChoice></header>)
+function Header({ selectedLanguage, onLanguageChange }) {
+   return (
+      <header>
+         <Logo />
+         Mon header
+         <LanguageChoice selectedLanguage={selectedLanguage} onLanguageChange={onLanguageChange} />
+      </header>
+   );
 }
 
-export default Header
+export default Header;
