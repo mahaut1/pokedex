@@ -1,14 +1,14 @@
-// PokemonListPage.jsx
-
 import React, { useState, useEffect } from 'react';
 import '../PokemonList/PokemonList.css';
 import PokemonList from '../PokemonList/PokemonList';
 import SearchBar from '../SearchBar/SearchBar';
 
-const PokemonListPage = () => {
+
+const PokemonListPage = ({selectedLanguage}) => {
     const [rows, setRows] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [isLoading, setIsLoading] = useState(true);
+    
 
     useEffect(() => {
         fetch("https://pokedex-jgabriele.vercel.app/pokemons.json")
@@ -22,6 +22,9 @@ const PokemonListPage = () => {
                 setIsLoading(false); // Met à jour l'état de chargement en cas d'erreur de requête
             });
     }, []);
+ 
+
+    
 
     const filteredPokemons = rows.filter((pokemon) =>
         pokemon.names.fr.toLowerCase().includes(searchTerm.toLowerCase())
@@ -29,11 +32,15 @@ const PokemonListPage = () => {
 
     return (
         <div>
+            
             <SearchBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
             {isLoading ? (
                 <p>Loading...</p>
             ) : (
-                <PokemonList filteredPokemons={filteredPokemons} />
+                <PokemonList
+                 filteredPokemons={filteredPokemons}  selectedLanguage={selectedLanguage}
+            
+                 />
             )}
         </div>
     );

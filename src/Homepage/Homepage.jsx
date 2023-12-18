@@ -14,7 +14,7 @@ const Homepage = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        // Récupération asynchrone de la liste des pokemons
+       
         fetch("https://pokedex-jgabriele.vercel.app/pokemons.json")
             .then((response) => response.json())
             .then((data) => {
@@ -27,7 +27,7 @@ const Homepage = () => {
                 setIsLoading(false);
             });
 
-        // Récupération asynchrone des types de pokemons pour la sélection de langues
+       
         fetch("https://pokedex-jgabriele.vercel.app/types.json")
             .then((response) => response.json())
             .then((data) => setTypes(data || []))
@@ -35,13 +35,12 @@ const Homepage = () => {
     }, []);
 
     useEffect(() => {
-        // Mettre à jour les noms des types selon la langue sélectionnée
+        
         if (types.length > 0) {
             updateTypesNames(selectedLanguage);
         }
     }, [selectedLanguage, types]);
 
-    // Filtrer les pokemons en fonction du terme de recherche
     useEffect(() => {
         const filtered = pokemons.filter((pokemon) =>
             pokemon.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -54,11 +53,11 @@ const Homepage = () => {
     };
 
     const updateTypesNames = (language) => {
-        const languageKey = language.toLowerCase(); // Utilisez la langue pour déterminer la clé correspondante dans les données de types
+        const languageKey = language.toLowerCase(); 
         const updatedTypes = types.map((type) => {
             return {
                 ...type,
-                name: type.names[languageKey], // Mettez à jour le nom du type en fonction de la langue sélectionnée
+                name: type.names[languageKey], 
             };
         });
         setTypes(updatedTypes);
@@ -67,10 +66,7 @@ const Homepage = () => {
     return (
         <div className="homepage">
             <Logo />
-            <LanguageChoice
-                selectedLanguage={selectedLanguage}
-                onLanguageChange={handleLanguageChange}
-            />
+         
             <SearchBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
             {isLoading ? (
                 <Loader />

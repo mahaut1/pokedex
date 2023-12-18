@@ -2,13 +2,13 @@ import React from 'react';
 import './PokemonList.css';
 import PokemonCard from './PokemonCard/PokemonCard';
 
-const PokemonList = ({ filteredPokemons }) => {
+const PokemonList = ({ filteredPokemons, selectedLanguage }) => {
     console.log("filteredPokemons in PokemonList:", filteredPokemons);
 
     return (
         <div className='Pokemonitems'>
             {filteredPokemons && filteredPokemons.map((pokemon, key) => (
-                <PokemonCard pokemon={pokemon} key={key} />
+                <PokemonCard pokemon={pokemon} key={key} selectedLanguage={selectedLanguage} />
             ))}
         </div>
     );
