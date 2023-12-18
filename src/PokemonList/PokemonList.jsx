@@ -11,7 +11,7 @@ const PokemonList = ({ filteredPokemons, selectedLanguage }) => {
                 <PokemonCard pokemon={pokemon} key={key} selectedLanguage={selectedLanguage} />
             ))}
         </div>
-    );
+      );
 };
 
 export default PokemonList;
