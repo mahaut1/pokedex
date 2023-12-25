@@ -3,7 +3,7 @@ import logosrc from './logo Pokemon.svg'
 import './logo.css'
 
 function Logo(){
-    return(<div><a href="/"><img src={logosrc}></img></a></div>)
+    return(<div><a href="/"><img src={logosrc} id="logo"></img></a></div>)
 }
 
 export default Logo
