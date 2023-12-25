@@ -3,28 +3,34 @@ import '../PokemonList/PokemonList.css';
 import PokemonList from '../PokemonList/PokemonList';
 import SearchBar from '../SearchBar/SearchBar';
 
-
-const PokemonListPage = ({selectedLanguage}) => {
+const PokemonListPage = ({ selectedLanguage }) => {
     const [rows, setRows] = useState([]);
+    const [types, setTypes] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [isLoading, setIsLoading] = useState(true);
-    
 
     useEffect(() => {
         fetch("https://pokedex-jgabriele.vercel.app/pokemons.json")
             .then((data) => data.json())
             .then((json) => {
                 setRows(json || []);
-                setIsLoading(false); // Met à jour l'état de chargement une fois que les données sont chargées
+                setIsLoading(false);
+
+                // Une fois les données des pokemons chargées, on effectue un nouveau fetch pour les types
+                fetch("https://pokedex-jgabriele.vercel.app/types.json")
+                    .then((data) => data.json())
+                    .then((typesJson) => {
+                        setTypes(typesJson || []);
+                    })
+                    .catch((error) => {
+                        console.error("Error fetching types data:", error);
+                    });
             })
             .catch((error) => {
-                console.error("Error fetching data:", error);
-                setIsLoading(false); // Met à jour l'état de chargement en cas d'erreur de requête
+                console.error("Error fetching pokemon data:", error);
+                setIsLoading(false);
             });
     }, []);
- 
-
-    
 
     const filteredPokemons = rows.filter((pokemon) =>
         pokemon.names.fr.toLowerCase().includes(searchTerm.toLowerCase())
@@ -32,15 +38,15 @@ const PokemonListPage = ({selectedLanguage}) => {
 
     return (
         <div>
-            
             <SearchBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
             {isLoading ? (
                 <p>Loading...</p>
             ) : (
                 <PokemonList
-                 filteredPokemons={filteredPokemons}  selectedLanguage={selectedLanguage}
-            
-                 />
+                    filteredPokemons={filteredPokemons}
+                    selectedLanguage={selectedLanguage}
+                    types={types} // Passer les types récupérés à PokemonList
+                />
             )}
         </div>
     );

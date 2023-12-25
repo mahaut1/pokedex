@@ -1,9 +1,14 @@
-// PokemonDetails.jsx
 import React from 'react';
 import { useParams } from 'react-router-dom';
 
 const PokemonDetails = ({ filteredPokemons }) => {
   const { id } = useParams();
+
+  // Vérification si filteredPokemons est undefined ou null
+  if (!filteredPokemons || filteredPokemons.length === 0) {
+    return <div>Filtered Pokemons not available</div>;
+  }
+
   const pokemon = filteredPokemons.find(pokemon => pokemon.id === parseInt(id));
 
   if (!pokemon) {
