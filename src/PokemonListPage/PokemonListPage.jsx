@@ -34,6 +34,7 @@ const PokemonListPage = ({ selectedLanguage }) => {
 
     const filteredPokemons = rows.filter((pokemon) =>
         pokemon.names.fr.toLowerCase().includes(searchTerm.toLowerCase())
+       
     );
 
     return (
@@ -45,8 +46,9 @@ const PokemonListPage = ({ selectedLanguage }) => {
                 <PokemonList
                     filteredPokemons={filteredPokemons}
                     selectedLanguage={selectedLanguage}
-                    types={types} // Passer les types récupérés à PokemonList
+                    types={types} 
                 />
+                
             )}
         </div>
     );
