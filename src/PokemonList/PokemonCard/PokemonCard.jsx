@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const PokemonCard = ({ pokemon, selectedLanguage }) => {
   const { id, name, image, types } = pokemon;
-
+  
   return (
     <div className="pokemon-card">
       <Link to={`/pokemon/${id}`}>
