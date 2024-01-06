@@ -14,8 +14,7 @@ const PokemonListPage = ({ selectedLanguage }) => {
     const [isLoadingPokemons, setIsLoadingPokemons] = useState(true);
     const [isLoadingTypes, setIsLoadingTypes] = useState(true);
     const [error, setError] = useState(null);
-    const [selectedPokemonId, setSelectedPokemonId] = useState(null);
-
+   
     useEffect(() => {
         fetch("https://pokedex-jgabriele.vercel.app/pokemons.json")
             .then((data) => data.json())

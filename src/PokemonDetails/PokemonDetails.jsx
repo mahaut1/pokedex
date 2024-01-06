@@ -58,6 +58,7 @@ const PokemonDetails = ({ selectedLanguage }) => {
               <p>Name: {pokemon.names[selectedLanguage]}</p>
               <p>Weight: {weight}</p>
               <p>Height: {height}</p>
+              <p>Types: {types.join(', ')}</p>
               <button onClick={handleShowMoves}>Show Moves</button>
   
               {showMovesDialog && (
